@@ -8,6 +8,7 @@
 
 - 默认补全 20–25 岁、明确成年的东方古典人物设定。
 - 将“漂亮、高级、自然”等抽象词落到五官、皮肤、衣料、动作、光线与镜头细节。
+- 内置明艳贵气、清艳含蓄、明媚灵秀、冷艳英气、圣洁华美五种美貌方向；默认采用 9:16 竖版，并以紧凑景别、足够大的人物与脸部占比、双眼同焦和清晰面光保证脸部质量。
 - 自动根据贵女、侠女、才女、琴师、女将、敦煌灵感、志怪人物等身份匹配服装、妆发、饰品、道具与环境。
 - 先建立“人物身份 + 决定性瞬间 + 情绪潜台词”的画面核，再统一造型语言、视觉主次、镜头、光色与环境反馈，避免参数清单感。
 - 支持梨形、沙漏形、直筒形、倒三角形、苹果形等成年身材，以及水滴形、圆润形、圆盘/浅盘形等完整衣着下的胸部轮廓，并自动匹配身份、服装和动作。
@@ -61,6 +62,7 @@ guzhuang-meiren-director/
 ├── references/
 │   ├── historical-styling.md
 │   ├── art-direction.md
+│   ├── beauty-direction.md
 │   ├── body-silhouette.md
 │   ├── personal-aesthetic.md
 │   ├── quality-bar.md
@@ -72,8 +74,9 @@ guzhuang-meiren-director/
 - `SKILL.md`：能力边界、路由、自动补全与交付规则。
 - `personal-aesthetic.md`：可修改的默认审美配置。
 - `art-direction.md`：画面命题、人物辨识度、视觉主次、色彩材质与叙事瞬间规则。
+- `beauty-direction.md`：惊艳美貌类型、眉眼与妆容设计、脸部景别、对焦、遮挡和用光规则。
 - `body-silhouette.md`：成年女性体态、身材、胸部衣着轮廓及身份匹配规则。
-- `quality-bar.md`：常见失败症状的修复矩阵，以及两份九层导演式成品标杆。
+- `quality-bar.md`：常见失败症状的修复矩阵，以及三份九层导演式成品标杆，包含脸部优先范例。
 - `historical-styling.md`：朝代妆造起点、考据边界与权威资料入口。
 - `prompt-architecture.md`：ChatGPT 文生图的分层提示词结构与安全改写方法。
 

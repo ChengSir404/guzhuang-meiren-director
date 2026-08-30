@@ -14,6 +14,12 @@ OPENAI_YAML = ROOT / "agents" / "openai.yaml"
 ALLOWED_FRONTMATTER_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
 NOISE_NAMES = {".DS_Store", "__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"}
 NOISE_SUFFIXES = {".pyc", ".log"}
+OBSOLETE_DEFAULT_RATIO_PHRASES = {
+    "默认横向 9:6",
+    "横向 9:6（3:2）",
+    "默认 4:5",
+    "默认横向 16:9",
+}
 
 
 def fail(message: str) -> None:
@@ -102,9 +108,11 @@ def validate_behavioral_invariants(skill_text: str) -> int:
         "prompt-only boundary": "不调用图片生成工具",
         "automatic completion": "自动补全",
         "art direction routing": "art-direction.md",
+        "beauty direction routing": "beauty-direction.md",
         "quality bar routing": "quality-bar.md",
         "body taxonomy routing": "body-silhouette.md",
         "director structure": "九层",
+        "vertical default": "9:16",
         "safe clothing": "衣着完整",
         "non-sexual framing": "非色情化",
     }
@@ -125,6 +133,18 @@ def validate_noise() -> None:
         fail(f"repository contains noise files: {', '.join(sorted(offenders))}")
 
 
+def validate_default_ratio() -> None:
+    runtime_files = [SKILL_MD, *sorted((ROOT / "references").glob("*.md"))]
+    offenders: list[str] = []
+    for path in runtime_files:
+        text = path.read_text(encoding="utf-8")
+        for phrase in OBSOLETE_DEFAULT_RATIO_PHRASES:
+            if phrase in text:
+                offenders.append(f"{path.relative_to(ROOT)}: {phrase}")
+    if offenders:
+        fail(f"obsolete default ratio remains: {', '.join(offenders)}")
+
+
 def main() -> int:
     if not SKILL_MD.is_file():
         fail("SKILL.md is missing")
@@ -136,12 +156,14 @@ def main() -> int:
     validate_ui_metadata(name)
     invariant_count = validate_behavioral_invariants(skill_text)
     checked_links = validate_local_links()
+    validate_default_ratio()
     validate_noise()
 
     print(f"PASS skill={name}")
     print(f"PASS local_links={checked_links}")
     print("PASS ui_metadata=agents/openai.yaml")
     print(f"PASS behavioral_invariants={invariant_count}")
+    print("PASS default_ratio=9:16")
     print("PASS repository_noise=none")
     return 0
 
