@@ -95,18 +95,23 @@ def validate_ui_metadata(name: str) -> None:
         fail("default_prompt does not mention the skill name")
 
 
-def validate_behavioral_invariants(skill_text: str) -> None:
+def validate_behavioral_invariants(skill_text: str) -> int:
     required = {
         "adult default": "20–25 岁、明确成年的东方古典美人",
         "ChatGPT scope": "ChatGPT 文生图",
         "prompt-only boundary": "不调用图片生成工具",
         "automatic completion": "自动补全",
+        "art direction routing": "art-direction.md",
+        "quality bar routing": "quality-bar.md",
+        "body taxonomy routing": "body-silhouette.md",
+        "director structure": "九层",
         "safe clothing": "衣着完整",
         "non-sexual framing": "非色情化",
     }
     missing = [label for label, phrase in required.items() if phrase not in skill_text]
     if missing:
         fail(f"missing behavioral invariants: {', '.join(missing)}")
+    return len(required)
 
 
 def validate_noise() -> None:
@@ -129,14 +134,14 @@ def main() -> int:
 
     name = validate_frontmatter(skill_text)
     validate_ui_metadata(name)
-    validate_behavioral_invariants(skill_text)
+    invariant_count = validate_behavioral_invariants(skill_text)
     checked_links = validate_local_links()
     validate_noise()
 
     print(f"PASS skill={name}")
     print(f"PASS local_links={checked_links}")
     print("PASS ui_metadata=agents/openai.yaml")
-    print("PASS behavioral_invariants=6")
+    print(f"PASS behavioral_invariants={invariant_count}")
     print("PASS repository_noise=none")
     return 0
 

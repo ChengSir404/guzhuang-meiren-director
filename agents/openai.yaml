@@ -1,4 +1,4 @@
 interface:
   display_name: "古装美人文生图美化"
-  short_description: "按你的审美完善安全、分层清楚的 ChatGPT 古装美人提示词"
-  default_prompt: "使用 $guzhuang-meiren-director 美化我的 ChatGPT 古装美人文生图提示词，并自动补全妆造、道具和环境。"
+  short_description: "把古装人物想法完善成有叙事瞬间、造型秩序与电影质感的安全提示词"
+  default_prompt: "使用 $guzhuang-meiren-director 把我的古装人物想法完善成有辨识度、画面事件和光色层次的安全 ChatGPT 文生图提示词。"
