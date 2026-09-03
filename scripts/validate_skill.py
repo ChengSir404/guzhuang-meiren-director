@@ -110,11 +110,14 @@ def validate_behavioral_invariants(skill_text: str) -> int:
         "art direction routing": "art-direction.md",
         "beauty direction routing": "beauty-direction.md",
         "quality bar routing": "quality-bar.md",
+        "control workflow routing": "control-workflow.md",
         "body taxonomy routing": "body-silhouette.md",
         "director structure": "九层",
         "vertical default": "9:16",
         "safe clothing": "衣着完整",
         "non-sexual framing": "非色情化",
+        "reference role mapping": "逐张指定职责",
+        "single-variable repair": "一轮只改变一个主变量",
     }
     missing = [label for label, phrase in required.items() if phrase not in skill_text]
     if missing:

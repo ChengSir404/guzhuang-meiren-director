@@ -16,6 +16,9 @@
 - 区分朝代考据、东方古典融合、敦煌/神圣意象和故事电影感。
 - 内置安全改写：完整不透明服装、非色情动作、不以敏感部位为视觉焦点。
 - 默认输出 9 个相互联动的导演式分区，也支持精简版与基于参考图的改写。
+- 新增四模式控制：从零新建、整理长提示词、参考图引导、失败出图修复；详细原稿不会被擅自扩写成另一幅画。
+- 多张参考图会逐张分配“身份、服装、姿态构图、色彩材质、场景氛围”等职责，并声明禁止迁移项，降低脸被服装参考人物替换的风险。
+- 失败修复采用单主变量策略：先看整图再看脸部，冻结已经正确的内容，只修最上游问题，避免每次改稿都把人物和画面重新随机。
 
 ## 安装
 
@@ -64,6 +67,7 @@ guzhuang-meiren-director/
 │   ├── art-direction.md
 │   ├── beauty-direction.md
 │   ├── body-silhouette.md
+│   ├── control-workflow.md
 │   ├── personal-aesthetic.md
 │   ├── quality-bar.md
 │   └── prompt-architecture.md
@@ -76,9 +80,19 @@ guzhuang-meiren-director/
 - `art-direction.md`：画面命题、人物辨识度、视觉主次、色彩材质与叙事瞬间规则。
 - `beauty-direction.md`：惊艳美貌类型、眉眼与妆容设计、脸部景别、对焦、遮挡和用光规则。
 - `body-silhouette.md`：成年女性体态、身材、胸部衣着轮廓及身份匹配规则。
+- `control-workflow.md`：任务模式、内部画面契约、约束优先级、参考图角色映射和单变量修复。
 - `quality-bar.md`：常见失败症状的修复矩阵，以及三份九层导演式成品标杆，包含脸部优先范例。
 - `historical-styling.md`：朝代妆造起点、考据边界与权威资料入口。
 - `prompt-architecture.md`：ChatGPT 文生图的分层提示词结构与安全改写方法。
+
+## 设计取舍
+
+本项目吸收了公开 Skill 中可迁移的工作方法，但没有复制平台专用参数或固定人脸模板：
+
+- 参考 [OpenAI Image Generation Skill](https://github.com/openai/skills/tree/main/skills/.system/imagegen) 的输入图角色标注、保持项复述、按输入具体程度控制补全，以及小步迭代。
+- 参考 [Professional Portrait Skill](https://github.com/lovstudio/professional-portrait-skill) 的身份优先、最小充分修改和“整图 + 脸部区域”质量检查。
+- 参考 [Replicate Prompt Images Skill](https://github.com/replicate/skills/tree/main/skills/prompt-images) 的自然语言、明确空间关系和从简单修改开始迭代。
+- 保留九层分区的可读性，但不采用固定复用同一套脸、长度无限、8K/HDR 质量词、装饰词库随机拼装或默认突出身体部位的方案；这些做法容易造成模板脸、权重稀释和画面失焦。
 
 ## 安全与考据边界
 
