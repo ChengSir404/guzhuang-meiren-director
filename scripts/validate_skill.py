@@ -101,10 +101,11 @@ def validate_ui_metadata(name: str) -> None:
         fail("default_prompt does not mention the skill name")
 
 
-def validate_behavioral_invariants(skill_text: str) -> int:
+def validate_entrypoint_markers(skill_text: str) -> int:
+    # Text presence checks only: these do not execute or validate model behavior.
     required = {
         "adult default": "20–25 岁、明确成年的东方古典美人",
-        "ChatGPT scope": "ChatGPT 文生图",
+        "ChatGPT scope": "ChatGPT",
         "prompt-only boundary": "不调用图片生成工具",
         "automatic completion": "自动补全",
         "art direction routing": "art-direction.md",
@@ -121,7 +122,7 @@ def validate_behavioral_invariants(skill_text: str) -> int:
     }
     missing = [label for label, phrase in required.items() if phrase not in skill_text]
     if missing:
-        fail(f"missing behavioral invariants: {', '.join(missing)}")
+        fail(f"missing entrypoint markers: {', '.join(missing)}")
     return len(required)
 
 
@@ -157,7 +158,7 @@ def main() -> int:
 
     name = validate_frontmatter(skill_text)
     validate_ui_metadata(name)
-    invariant_count = validate_behavioral_invariants(skill_text)
+    marker_count = validate_entrypoint_markers(skill_text)
     checked_links = validate_local_links()
     validate_default_ratio()
     validate_noise()
@@ -165,9 +166,10 @@ def main() -> int:
     print(f"PASS skill={name}")
     print(f"PASS local_links={checked_links}")
     print("PASS ui_metadata=agents/openai.yaml")
-    print(f"PASS behavioral_invariants={invariant_count}")
+    print(f"PASS entrypoint_markers={marker_count}")
     print("PASS default_ratio=9:16")
     print("PASS repository_noise=none")
+    print("NOTE model_behavior=not_executed; see examples/behavioral-cases.md")
     return 0
 
 

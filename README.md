@@ -15,7 +15,7 @@
 - 支持剑、弓、马、琴、棋、书、画、花、团扇、灯笼等道具，并让道具真正参与动作和故事。
 - 区分朝代考据、东方古典融合、敦煌/神圣意象和故事电影感。
 - 内置安全改写：完整不透明服装、非色情动作、不以敏感部位为视觉焦点。
-- 默认输出 9 个相互联动的导演式分区，也支持精简版与基于参考图的改写。
+- 新建默认输出连贯完整提示词，复杂画面可用九层导演版；整理保留原稿结构，局部修复优先提供替换段落，遵从用户字数和段数要求。
 - 新增四模式控制：从零新建、整理长提示词、参考图引导、失败出图修复；详细原稿不会被擅自扩写成另一幅画。
 - 多张参考图会逐张分配“身份、服装、姿态构图、色彩材质、场景氛围”等职责，并声明禁止迁移项，降低脸被服装参考人物替换的风险。
 - 失败修复采用单主变量策略：先看整图再看脸部，冻结已经正确的内容，只修最上游问题，避免每次改稿都把人物和画面重新随机。
@@ -72,6 +72,8 @@ guzhuang-meiren-director/
 │   ├── quality-bar.md
 │   └── prompt-architecture.md
 ├── examples/usage.md
+├── examples/director-prompts.md
+├── examples/behavioral-cases.md
 └── scripts/validate_skill.py
 ```
 
@@ -81,7 +83,7 @@ guzhuang-meiren-director/
 - `beauty-direction.md`：惊艳美貌类型、眉眼与妆容设计、脸部景别、对焦、遮挡和用光规则。
 - `body-silhouette.md`：成年女性体态、身材、胸部衣着轮廓及身份匹配规则。
 - `control-workflow.md`：任务模式、内部画面契约、约束优先级、参考图角色映射和单变量修复。
-- `quality-bar.md`：常见失败症状的修复矩阵，以及三份九层导演式成品标杆，包含脸部优先范例。
+- `quality-bar.md`：常见失败症状的修复矩阵；长篇标杆按需读取 [examples/director-prompts.md](examples/director-prompts.md)。
 - `historical-styling.md`：朝代妆造起点、考据边界与权威资料入口。
 - `prompt-architecture.md`：ChatGPT 文生图的分层提示词结构与安全改写方法。
 
@@ -109,7 +111,9 @@ guzhuang-meiren-director/
 python3 scripts/validate_skill.py
 ```
 
-验证器检查 frontmatter、Skill 名称、本地引用、UI 元数据、安全核心约束以及仓库噪声文件。GitHub Actions 会在每次推送和 Pull Request 时执行同一检查。
+验证器检查 frontmatter、Skill 名称、本地引用、UI 元数据、入口路由标记以及仓库噪声文件。GitHub Actions 在推送和 Pull Request 时执行同一检查。它不执行模型，也不证明指令遵循或出图质量。
+
+修改行为规则后，按 [行为回归用例](examples/behavioral-cases.md) 实际生成提示词并逐项核对输出；不要把关键词出现视作行为通过。涉及出图效果时另做同输入、同模型设置的前后对比。
 
 ## 贡献
 
