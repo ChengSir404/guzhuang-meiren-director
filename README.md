@@ -66,6 +66,8 @@ git clone https://github.com/ChengSir404/guzhuang-meiren-director.git ~/.codex/s
 
 默认调用“自然丰满版”；明确说“固定丰满胸型模板加强版”时使用“较丰满版”。两者均服从完整衣着、真实比例与服装结构，不默认露肤或改变年龄、腰线，也不承诺审核或出图效果。详见 [衣着轮廓预设](references/body-silhouette.md)。
 
+按需搭配配饰，可说“用固定腰链模板”或“用固定脚链模板”。默认一个主配饰、少量辅助，已有首饰计入预算；不会自动露腰、改裙长、换鞋或改变构图。具体规则见 [配饰搭配](references/accessory-styling.md)。
+
 更多请求方式见 [examples/usage.md](examples/usage.md)。
 
 ## 默认审美与自定义
@@ -84,6 +86,7 @@ guzhuang-meiren-director/
 │   ├── historical-styling.md
 │   ├── art-direction.md
 │   ├── beauty-direction.md
+│   ├── accessory-styling.md
 │   ├── body-silhouette.md
 │   ├── control-workflow.md
 │   ├── personal-aesthetic.md

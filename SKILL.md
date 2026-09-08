@@ -30,6 +30,7 @@ license: MIT
 
 - 设计五官、美貌方向或修复脸部清晰度：[beauty-direction.md](references/beauty-direction.md)。已有身份参考时不重新设计脸。
 - 用户指定身材或需要解决衣料与体态适配：[body-silhouette.md](references/body-silhouette.md)。未要求胸型时只写整体衣着轮廓；用户说“用固定丰满胸型模板”时按该文件选择自然丰满版，明确要求加强版时选择较丰满版，不改变其他人物设定。
+- 用户要求配饰搭配、腰链、脚链或固定配饰模板时读 [accessory-styling.md](references/accessory-styling.md)。默认一个主配饰、少量辅助，已有首饰计入预算，不整套堆叠；保留服装、体型与构图。
 - 指定朝代、身份或严格考据：[historical-styling.md](references/historical-styling.md)。严格复原核对具体依据；无法查证时标明推断，不把灵感设计称为复原。
 - 需要完整导演版、精简版或安全改写句式：[prompt-architecture.md](references/prompt-architecture.md)。
 
