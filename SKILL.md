@@ -30,7 +30,7 @@ description: 创作、精简和修复用于 ChatGPT 图像生成的中文成年�
 
 ## 按需读取
 
-只读本次需要的条目，不一次加载所有资料。
+只读本次需要的条目，不一次加载所有资料。完成普通创作所需的分类、搭配方法与结构要点均在本包内；内部文件链接可以直接读取，不依赖外部网页。只有任务明确需要额外核验时再补充资料。
 
 | 需求 | 文件 |
 |---|---|
@@ -45,7 +45,7 @@ description: 创作、精简和修复用于 ChatGPT 图像生成的中文成年�
 | 模糊脸、假皮肤、手脚畸形、姿态僵硬 | [质量诊断](references/quality-bar.md) |
 | 腰链、单侧脚链及配饰搭配 | [配饰](references/accessory-styling.md) |
 | 指定朝代、严格复原 | [历史妆造](references/historical-styling.md) |
-| 名称来源、俗称与标准的区别 | [资料来源](references/sources.md) |
+| 内置知识要点、俗称边界与离线使用 | [内置知识](references/sources.md) |
 
 ## 自动补全与整体设计流程
 
