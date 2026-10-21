@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_MD = ROOT / "SKILL.md"
 OPENAI_YAML = ROOT / "agents" / "openai.yaml"
-ALLOWED_FRONTMATTER_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
+ALLOWED_FRONTMATTER_KEYS = {"name", "description"}
 NOISE_NAMES = {".DS_Store", "__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"}
 NOISE_SUFFIXES = {".pyc", ".log"}
 OBSOLETE_DEFAULT_RATIO_PHRASES = {
@@ -104,7 +104,7 @@ def validate_ui_metadata(name: str) -> None:
 def validate_entrypoint_markers(skill_text: str) -> int:
     # Text presence checks only: these do not execute or validate model behavior.
     required = {
-        "adult default": "20–25 岁、明确成年的东方古典美人",
+        "adult default": "明确成年东方女性",
         "ChatGPT scope": "ChatGPT",
         "prompt-only boundary": "不调用图片生成工具",
         "automatic completion": "自动补全",
@@ -113,7 +113,11 @@ def validate_entrypoint_markers(skill_text: str) -> int:
         "quality bar routing": "quality-bar.md",
         "control workflow routing": "control-workflow.md",
         "body taxonomy routing": "body-silhouette.md",
-        "director structure": "九层",
+        "pose routing": "pose-library.md",
+        "expression routing": "expression-library.md",
+        "source boundaries": "sources.md",
+        "output architecture": "prompt-architecture.md",
+        "director structure": "默认按九模块",
         "vertical default": "9:16",
         "safe clothing": "衣着完整",
         "non-sexual framing": "非色情化",

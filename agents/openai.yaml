@@ -1,4 +1,4 @@
 interface:
-  display_name: "古装美人文生图美化"
-  short_description: "创作、整理或修复有清晰脸部与参考图控制的安全古装人物提示词"
-  default_prompt: "使用 $guzhuang-meiren-director 把我的古装人物想法、参考图或失败出图整理成有辨识度、清晰脸部、画面事件和光色层次的安全 ChatGPT 文生图提示词。"
+  display_name: "古装美人提示词导演"
+  short_description: "默认九模块完善真人古装与仙侠人像，按需搭配胸型、眼型、动作与表情"
+  default_prompt: "使用 $guzhuang-meiren-director 按九模块完善我的真人古装人像提示词，动作与表情自然，保留明确要求，仅在必要时追加材质、环境或特殊效果模块。"
