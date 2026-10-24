@@ -104,7 +104,7 @@ def validate_ui_metadata(name: str) -> None:
 def validate_entrypoint_markers(skill_text: str) -> int:
     # Text presence checks only: these do not execute or validate model behavior.
     required = {
-        "adult default": "明确成年东方女性",
+        "adult default": "默认20岁的明确成年东方女性",
         "ChatGPT scope": "ChatGPT",
         "prompt-only boundary": "不调用图片生成工具",
         "automatic completion": "自动补全",
