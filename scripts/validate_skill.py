@@ -12,6 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL_MD = ROOT / "SKILL.md"
 OPENAI_YAML = ROOT / "agents" / "openai.yaml"
 ALLOWED_FRONTMATTER_KEYS = {"name", "description"}
+REQUIRED_DISPLAY_KEYS = {"version", "display_name", "display_name_en", "description_zh", "description_en"}
+ALLOWED_FRONTMATTER_KEYS |= REQUIRED_DISPLAY_KEYS
 NOISE_NAMES = {".DS_Store", "__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"}
 NOISE_SUFFIXES = {".pyc", ".log"}
 OBSOLETE_DEFAULT_RATIO_PHRASES = {
@@ -51,6 +53,13 @@ def validate_frontmatter(skill_text: str) -> str:
     extra = set(frontmatter) - ALLOWED_FRONTMATTER_KEYS
     if extra:
         fail(f"unexpected frontmatter keys: {', '.join(sorted(extra))}")
+
+    for key in sorted(REQUIRED_DISPLAY_KEYS):
+        value = frontmatter.get(key, "")
+        if not value.strip() or value.lower() in {"null", "~", "true", "false"}:
+            fail(f"missing or empty display metadata: {key}")
+    if not re.fullmatch(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)", frontmatter["version"]):
+        fail("version must use major.minor.patch (for example 1.0.0)")
 
     name = frontmatter.get("name", "")
     description = frontmatter.get("description", "")
@@ -168,6 +177,7 @@ def main() -> int:
     validate_noise()
 
     print(f"PASS skill={name}")
+    print("PASS display_metadata=version,display_name,display_name_en,description_zh,description_en")
     print(f"PASS local_links={checked_links}")
     print("PASS ui_metadata=agents/openai.yaml")
     print(f"PASS entrypoint_markers={marker_count}")

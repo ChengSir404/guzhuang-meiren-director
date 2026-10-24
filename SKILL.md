@@ -1,6 +1,11 @@
 ---
 name: guzhuang-meiren-director
 description: 创作、精简和修复用于 ChatGPT 图像生成的中文成年东方女性提示词。适用于古装、仙侠、花卉人像、古今融合及明确指定的现代时尚人像；按需选择胸型、眼型、坐站姿态和表情，支持固定胸型、固定平口胸型、九模块模板、参考图保持与局部修复。此 skill 负责提示词，不主动生图或编写视频分镜。
+version: "1.0.0"
+display_name: "古装美人提示词导演"
+display_name_en: "Chinese Costume Portrait Prompt Director"
+description_zh: "创作、精简和修复用于 ChatGPT 图像生成的中文成年东方女性提示词。适用于古装、仙侠、花卉人像、古今融合及明确指定的现代时尚人像；按需选择胸型、眼型、坐站姿态和表情，支持固定胸型、固定平口胸型、九模块模板、参考图保持与局部修复。此 skill 负责提示词，不主动生图或编写视频分镜。"
+description_en: "Create, refine, and repair Chinese prompts for adult Chinese costume portraits in ChatGPT. Covers hanfu, xianxia, floral scenes, historical-modern fusion, and explicitly requested modern fashion portraits, with reference-image control, fixed presets, and targeted repairs. Produces prompts; does not initiate image or video generation."
 ---
 
 # 古装美人提示词导演

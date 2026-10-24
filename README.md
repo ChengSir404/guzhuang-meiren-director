@@ -77,3 +77,15 @@ python3 scripts/validate_skill.py
 结构校验检查元数据、链接与入口；[行为用例](examples/behavioral-cases.md) 验证实际提示词，[成品示例](examples/director-prompts.md) 展示格式。两者都不能替代实际出图对照测试。本 skill 默认负责提示词，不主动生成图片，也不保证审核与模型结果。
 
 [MIT License](LICENSE)
+
+
+## 导入元数据
+
+`SKILL.md` 顶部保留 `name`、`description`，并提供导入页面要求的五个顶层字段：`version`、`display_name`、`display_name_en`、`description_zh`、`description_en`。版本使用加引号的三段字符串，当前为 `"1.0.0"`；这是首次补齐元数据版本，不表示已创建 Git 标签或 Release。
+
+这五项不能仅放进 `agents/openai.yaml` 或嵌套 `metadata`。部分通用技能校验器仅接受标准字段，会将这些顶层扩展报告为额外字段；本项目校验器按此导入格式检查必填项、版本、重复键及其他包结构。未实际在目标平台上传验证时，不将本地校验通过称为平台导入成功。
+
+```bash
+python3 scripts/validate_skill.py
+python3 scripts/test_validate_skill.py
+```
