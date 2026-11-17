@@ -126,7 +126,7 @@ def validate_entrypoint_markers(skill_text: str) -> int:
         "expression routing": "expression-library.md",
         "source boundaries": "sources.md",
         "output architecture": "prompt-architecture.md",
-        "director structure": "默认按九模块",
+        "director structure": "默认采用动态六模块",
         "vertical default": "9:16",
         "safe clothing": "衣着完整",
         "non-sexual framing": "非色情化",
@@ -137,6 +137,25 @@ def validate_entrypoint_markers(skill_text: str) -> int:
     if missing:
         fail(f"missing entrypoint markers: {', '.join(missing)}")
     return len(required)
+
+
+DYNAMIC_MODULES = (
+    "【画面目标】", "【人物与面容】", "【服装与身材】",
+    "【动作与表情】", "【构图与场景】", "【关键约束】",
+)
+
+
+def validate_dynamic_modules() -> int:
+    architecture = (ROOT / "references" / "prompt-architecture.md").read_text(encoding="utf-8")
+    for title in DYNAMIC_MODULES:
+        if f"| {title} |" not in architecture:
+            fail(f"missing dynamic module: {title}")
+    if "四至五模块" not in architecture or "七个以上" not in architecture:
+        fail("module counts must be flexible")
+    for path in (SKILL_MD, OPENAI_YAML, ROOT / "README.md"):
+        if "动态六模块" not in path.read_text(encoding="utf-8"):
+            fail(f"dynamic default missing: {path.relative_to(ROOT)}")
+    return len(DYNAMIC_MODULES)
 
 
 def validate_noise() -> None:
@@ -173,6 +192,7 @@ def main() -> int:
     validate_ui_metadata(name)
     marker_count = validate_entrypoint_markers(skill_text)
     checked_links = validate_local_links()
+    dynamic_count = validate_dynamic_modules()
     validate_default_ratio()
     validate_noise()
 
@@ -181,6 +201,7 @@ def main() -> int:
     print(f"PASS local_links={checked_links}")
     print("PASS ui_metadata=agents/openai.yaml")
     print(f"PASS entrypoint_markers={marker_count}")
+    print(f"PASS dynamic_modules={dynamic_count} (flexible default)")
     print("PASS default_ratio=9:16")
     print("PASS repository_noise=none")
     print("NOTE model_behavior=not_executed; see examples/behavioral-cases.md")
