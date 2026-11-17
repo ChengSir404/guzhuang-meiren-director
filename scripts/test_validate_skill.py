@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR = runpy.run_path(str(ROOT / "scripts" / "validate_skill.py"))
 VALIDATE = VALIDATOR["validate_frontmatter"]
+VALIDATE_MODULES = VALIDATOR["validate_dynamic_modules"]
 SOURCE = (ROOT / "SKILL.md").read_text(encoding="utf-8")
 FIELDS = ("version", "display_name", "display_name_en", "description_zh", "description_en")
 
@@ -22,6 +23,9 @@ def without_field(text, field):
 class ImportMetadataTests(unittest.TestCase):
     def test_current_package(self):
         self.assertEqual(VALIDATE(SOURCE), ROOT.name)
+
+    def test_dynamic_module_default(self):
+        self.assertEqual(VALIDATE_MODULES(), 6)
 
     def test_each_required_field_is_rejected_when_missing(self):
         for field in FIELDS:

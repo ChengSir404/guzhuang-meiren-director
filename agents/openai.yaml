@@ -1,4 +1,4 @@
 interface:
   display_name: "古装美人提示词导演"
-  short_description: "默认九模块完善真人古装与仙侠人像，按需搭配胸型、眼型、动作与表情"
-  default_prompt: "使用 $guzhuang-meiren-director 按九模块完善我的真人古装人像提示词，动作与表情自然，保留明确要求，仅在必要时追加材质、环境或特殊效果模块。"
+  short_description: "默认动态六模块完善真人古装与仙侠人像，按需搭配胸型、眼型、动作与表情"
+  default_prompt: "使用 $guzhuang-meiren-director 按动态六模块设计我的真人古装人像提示词，动作和表情根据主题灵活设计，保留明确要求，简单内容可合并，复杂场景按需扩展模块。"
